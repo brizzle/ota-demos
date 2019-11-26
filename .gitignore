@@ -1,0 +1,8 @@
+*.userprefs
+
+# Click-Once directory
+publish/
+
+node_modules/
+
+*.env
