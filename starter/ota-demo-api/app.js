@@ -1,16 +1,16 @@
-const path = require("path");
-const express = require("express");
-const morgan = require("morgan");
-const rateLimit = require("express-rate-limit");
-const helmet = require("helmet");
-const xss = require("xss-clean");
-const hpp = require("hpp");
-const cookieParser = require("cookie-parser");
-const compression = require("compression");
-const cors = require("cors");
+const path = require('path');
+const express = require('express');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const xss = require('xss-clean');
+const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
+const compression = require('compression');
+const cors = require('cors');
 
-const readPointRouter = require("./routes/readPointRoutes");
-const userRouter = require("./routes/userRoutes");
+const readPointRouter = require('./routes/readPointRoutes');
+const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
@@ -19,20 +19,25 @@ const app = express();
 // order matters
 
 // 1) GLOBAL MIDDLEWARES
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200
+};
 
-app.options("*", cors());
+app.use(cors(corsOptions));
+
+app.options('*', cors());
 
 // Serving static files
-app.use(express.static(path.join(__dirname, "ota-demo-api"))); // YES
+app.use(express.static(path.join(__dirname, 'ota-demo-api'))); // YES
 
 // Set Security HTTP headers
 // Currently using the default options.
 app.use(helmet());
 
 // Development logging
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
 }
 
 // Limit requests from same API
@@ -40,7 +45,7 @@ if (process.env.NODE_ENV === "development") {
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,
-  message: "Too many requests from this IP, please try again in an hour!"
+  message: 'Too many requests from this IP, please try again in an hour!'
 });
 
 // Helps with Denial of Service attacks and
@@ -50,7 +55,7 @@ const limiter = rateLimit({
 // X-Powered-By
 // X-RateLimit-Limit
 // X-RateLimit-Remaining
-app.use("/api", limiter);
+app.use('/api', limiter);
 
 // Middleware
 // Data from the body is added to the
@@ -58,13 +63,13 @@ app.use("/api", limiter);
 // Body parser, reading data from body into req.body
 app.use(
   express.json({
-    limit: "10kb" // limits the body size, nothing larger than 10kb
+    limit: '10kb' // limits the body size, nothing larger than 10kb
   })
 );
 
 // This is needed to parse data coming from a URL encoded form
 // extended allows for more complex data to be passed
-app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 app.use(cookieParser());
 
@@ -96,10 +101,10 @@ const url = `/${apiUrlRoot}/${apiVersion}`;
 // app.use("/", viewRouter);
 
 // API Routes
-app.use(`${url}/readPoints`, readPointRouter);
+app.use(`${url}/read-points`, readPointRouter);
 app.use(`${url}/users`, userRouter);
 
-app.all("*", (req, res, next) => {
+app.all('*', (req, res, next) => {
   next();
 });
 
