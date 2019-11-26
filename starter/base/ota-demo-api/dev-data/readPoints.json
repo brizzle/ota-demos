@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "type": "barrier",
+    "location": {
+      "type": "point",
+      "description": "Test Description",
+      "coordinates": "-80.185942, 25.774772"
+    }
+  }
+]

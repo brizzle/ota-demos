@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Jane Smith",
+    "email": "test@pikepass.com",
+    "photo": "profile.jpeg",
+    "role": "admin",
+    "password": "",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "John Doe",
+    "email": "test-2@pikepass.com",
+    "photo": "profile-2.jpeg",
+    "role": "user",
+    "password": "",
+    "active": true
+  }
+]
