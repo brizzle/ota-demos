@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ReadPointProxyService } from '../../services/read-point-proxy.service';
 import * as mapboxgl from 'mapbox-gl';
@@ -7,7 +7,8 @@ import { settings } from '../../settings';
 @Component({
   selector: 'app-read-points',
   templateUrl: './read-points.component.html',
-  styleUrls: ['./read-points.component.scss']
+  styleUrls: ['./read-points.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ReadPointsComponent implements OnInit, OnDestroy {
   public readPoints: Array<any> = new Array<any>();
