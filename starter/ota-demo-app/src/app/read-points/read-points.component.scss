@@ -1,22 +1,21 @@
 .section-map {
   position: relative;
   height: 65rem;
-  margin-top: calc(0px - var(--section-rotate));
 }
 
 #map {
   // position: absolute;
   // top: 0;
   // bottom: 0;
-  height: 40%;
+  height: 90%;
   width: 100%;
 }
 
 .marker {
   background-image: url('../../assets/img/pin.png');
   background-size: cover;
-  width: 32px;
-  height: 40px;
+  width: 3.2rem;
+  height: 4rem;
   cursor: pointer;
 }
 
@@ -31,4 +30,43 @@
   font-size: 1.4rem;
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15) !important;
+}
+
+// Follows the BEM (Block Element Modifier) pattern
+//
+// Block - header, container, menu, checkbox, input
+// Element - menu item, list item, checkbox, caption, header title
+// Modifier - disabled, highlighted, checked, fixed, size, big, color yellow
+//
+// i.e. block__element--modifier-value
+.read-points {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+
+    &--text {
+      padding: 0 2rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__section {
+    &--data {
+      display: flex;
+      p {
+        padding: 0 2rem;
+      }
+    }
+  }
+
+  &__table {
+    margin-bottom: 2rem;
+  }
 }

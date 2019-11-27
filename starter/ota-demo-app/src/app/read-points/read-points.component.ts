@@ -3,19 +3,21 @@ import { Subscription } from 'rxjs';
 import { ReadPointProxyService } from '../../services/read-point-proxy.service';
 import * as mapboxgl from 'mapbox-gl';
 import { settings } from '../../settings';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-read-points',
   templateUrl: './read-points.component.html',
   styleUrls: ['./read-points.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ReadPointsComponent implements OnInit, OnDestroy {
   public readPoints: Array<any> = new Array<any>();
+  public headers = ['Id', 'Title', 'Description', 'Type', 'Coordinates'];
   private subscriptions: Subscription[] = [];
   map: mapboxgl.Map;
 
-  constructor(private readPointProxySvc: ReadPointProxyService) {}
+  constructor(private readPointProxySvc: ReadPointProxyService, public router: Router) {}
 
   public ngOnInit() {
     this.readPointProxySvc.getAll().subscribe(
@@ -23,7 +25,7 @@ export class ReadPointsComponent implements OnInit, OnDestroy {
         this.readPoints = data;
         this.setupMapbox(data);
       },
-      err => console.log(err)
+      err => console.log(err),
     );
   }
 
@@ -33,18 +35,20 @@ export class ReadPointsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public add(): void {
+    this.router.navigate(['/read-points/', 0, 'edit']);
+  }
+
   private setupMapbox(readPoints): void {
     // (mapboxgl as any).accessToken = settings.mapbox.accessToken;
     // OR ... since the accessToken property is readonly, this is the
     // fix
-    Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(
-      settings.mapbox.accessToken
-    );
+    Object.getOwnPropertyDescriptor(mapboxgl, 'accessToken').set(settings.mapbox.accessToken);
 
     this.map = new mapboxgl.Map({
       container: 'map',
       style: settings.mapbox.style,
-      scrollZoom: false
+      scrollZoom: false,
       // center: [-118.113491, 34.111745],
       // zoom: 10
       // interactive: true
@@ -60,7 +64,7 @@ export class ReadPointsComponent implements OnInit, OnDestroy {
       // Add marker
       new mapboxgl.Marker({
         element: el,
-        anchor: 'bottom'
+        anchor: 'bottom',
       })
         // setLngLat() takes an array of coordinates
         .setLngLat(readPoint.coordinates)
@@ -68,7 +72,7 @@ export class ReadPointsComponent implements OnInit, OnDestroy {
 
       // Add popup
       new mapboxgl.Popup({
-        offset: 30
+        offset: 30,
       })
         .setLngLat(readPoint.coordinates)
         .setHTML(`<p>${readPoint.description}</p>`)
@@ -83,8 +87,8 @@ export class ReadPointsComponent implements OnInit, OnDestroy {
         top: 200,
         bottom: 150,
         left: 100,
-        right: 100
-      }
+        right: 100,
+      },
     });
   }
 }

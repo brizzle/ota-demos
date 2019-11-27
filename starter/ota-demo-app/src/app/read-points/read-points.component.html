@@ -1,4 +1,46 @@
-<h1>Read Points Page</h1>
+<section id="readPoints" class="read-points">
+  <h1 class="read-points__title">Read Points Page</h1>
+
+  <div class="card-container">
+    <a class="circle-link" title="Add Read Point" rel="noopener" (click)="add()">Add</a>
+  </div>
+
+  <!-- <div class="read-points__header">
+    <div class="read-points__header--text" *ngFor="let header of headers">{{ header }}</div>
+  </div>
+
+  <div class="read-points__section">
+    <div class="read-points__section--data" *ngFor="let readPoint of readPoints">
+      <p>{{ readPoint.id }}</p>
+      <p>{{ readPoint.title }}</p>
+      <p>{{ readPoint.description }}</p>
+      <p>{{ readPoint.type }}</p>
+      <p>{{ readPoint.coordinates }}</p>
+    </div>
+  </div> -->
+
+  <div id="readPoints" class="read-points__table">
+    <table>
+      <thead>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Coordinates</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let readPoint of readPoints">
+          <td>{{ readPoint.id }}</td>
+          <td>{{ readPoint.title }}</td>
+          <td>{{ readPoint.description }}</td>
+          <td>{{ readPoint.type }}</td>
+          <td>{{ readPoint.coordinates }}</td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
+</section>
 
 <section class="section-map">
   <div id="map"></div>

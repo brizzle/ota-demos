@@ -26,4 +26,18 @@ export class ReadPointProxyService extends BaseProxyService {
       catchError(err => this.handleError(err))
     );
   }
+
+  public get(id): Observable<any> {
+    const url = `${this.baseUrl}api/v1/read-points/${id}`;
+
+    const requestOptions = this.getRequestOptions(
+      'application/json',
+      'application/json'
+    );
+
+    return this.http.post(url, requestOptions).pipe(
+      map(res => this.handleSuccess(res)),
+      catchError(err => this.handleError(err))
+    );
+  }
 }
