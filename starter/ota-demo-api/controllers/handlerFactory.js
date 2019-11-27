@@ -1,6 +1,6 @@
 exports.getAll = data => (req, res, next) => {
   // console.log(req.body);
-  console.log(data);
+  // console.log(data);
 
   res.status(200).json({
     status: 'success',
