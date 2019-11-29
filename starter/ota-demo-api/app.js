@@ -93,11 +93,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// const apiUrlRoot = process.env.API_ROOT;
-// const apiVersion = process.env.API_VERSION;
-
-const apiUrlRoot = 'api';
-const apiVersion = 'v1';
+const apiUrlRoot = process.env.API_ROOT;
+const apiVersion = process.env.API_VERSION;
 
 const url = `/${apiUrlRoot}/${apiVersion}`;
 console.log(url);
