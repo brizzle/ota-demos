@@ -96,7 +96,7 @@ app.use((req, res, next) => {
 const apiUrlRoot = process.env.API_ROOT;
 const apiVersion = process.env.API_VERSION;
 const url = `/${apiUrlRoot}/${apiVersion}`;
-// console.log(url);
+console.log(url);
 
 // Template Routes
 // app.use("/", viewRouter);
