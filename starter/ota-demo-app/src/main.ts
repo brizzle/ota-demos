@@ -6,7 +6,8 @@ import { environment } from './environments/environment';
 
 export function getBaseUrl() {
   const url = 'localhost';
-  const port = 8000;
+  // const url = 'raspberrypi';
+  const port = 3000;
   return `http://${url}:${port}/`;
 }
 

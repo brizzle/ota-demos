@@ -1,56 +1,70 @@
-<h1>Read Point Edit</h1>
+<section class="ota-read-point-edit-section">
+  <div class="edit-form">
+    <form class="form form__edit" [formGroup]="form">
+      <h1 class="form__edit__form-header">Read Point</h1>
 
-<form class="form" [formGroup]="form">
-  <div class="form-body">
-    <h4 class="form-section"><i class="ft-info"></i> Read Point</h4>
-    <div class="row">
-      <div class="form-group col-md-6 mb-2">
-        <label for="name">Title</label>
-        <input type="text" id="title" class="form-control" placeholder="Title" name="title" formControlName="title" />
+      <div class="form__group">
+        <label class="form__label" for="name">Title</label>
+        <input type="text" id="title" class="form__input" placeholder="Title" name="title" formControlName="title" />
       </div>
 
-      <div class="form-group col-md-6 mb-2">
-        <label for="description">Description</label>
+      <div class="form__group">
+        <label class="form__label" for="description">Description</label>
         <input
           type="text"
           id="description"
-          class="form-control"
+          class="form__input"
           placeholder="Description"
           name="description"
           formControlName="description"
         />
       </div>
 
-      <div class="form-group col-md-6 mb-2">
-        <label for="description">Type</label>
-        <input type="text" id="type" class="form-control" placeholder="Type" name="type" formControlName="type" />
+      <div class="form__group">
+        <label class="form__label" for="description">Type</label>
+        <input type="text" id="type" class="form__input" placeholder="Type" name="type" formControlName="type" />
       </div>
 
-      <div class="form-group col-md-6 mb-2">
-        <label for="description">Coordinates</label>
-        <input
-          type="text"
-          id="coordinates"
-          class="form-control"
-          placeholder="Coordinates"
-          name="coordinates"
-          formControlName="coordinates"
-        />
-      </div>
-    </div>
-  </div>
+      <h1 class="form__edit__form-header">Coordinates</h1>
+      <div class="row">
+        <div class="form__group row__item">
+          <label class="form__label" for="description">Latitude</label>
+          <input
+            type="text"
+            id="latitude"
+            class="form__input"
+            placeholder="Latitude"
+            name="latitude"
+            formControlName="latitude"
+          />
+        </div>
 
-  <div class="form-actions right">
-    <button type="button" class="btn btn-raised btn-warning mr-1" (click)="cancel()">
-      <i class="ft-x"></i> Cancel
-    </button>
-    <button
-      [disabled]="!form.valid || !isValid || !form.dirty"
-      type="submit"
-      (click)="submit()"
-      class="btn btn-raised btn-primary"
-    >
-      <i class="fa fa-check-square-o"></i> Save
-    </button>
+        <div class="form__group row__item">
+          <label class="form__label" for="description">Longitude</label>
+          <input
+            type="text"
+            id="longitude"
+            class="form__input"
+            placeholder="Longitude"
+            name="longitude"
+            formControlName="longitude"
+          />
+        </div>
+      </div>
+
+      <div class="form__actions">
+        <button type="button" class="ota-btn ota-btn--secondary form__actions__item" (click)="cancel()">
+          <i class="ft-x"></i> Cancel
+        </button>
+        <button
+          [disabled]="!form.valid || !isValid || !form.dirty"
+          type="submit"
+          (click)="submit()"
+          class="ota-btn ota-btn--primary form__actions__item"
+        >
+          <i class="fa fa-check-square-o"></i> Save
+        </button>
+      </div>
+    </form>
   </div>
-</form>
+</section>

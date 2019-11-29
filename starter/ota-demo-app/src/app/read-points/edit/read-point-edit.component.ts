@@ -50,15 +50,35 @@ export class ReadPointEditComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
-    this.router.navigate(['/read-points/']);
+    const title = this.form.get('title').value;
+    const description = this.form.get('description').value;
+    const type = this.form.get('type').value;
+    const latitude = +this.form.get('latitude').value;
+    const longitude = +this.form.get('longitude').value;
+
+    const data = { title, description, type, coordinates: [longitude, latitude] };
+
+    console.log(data);
+
+    this.readPointProxySvc.add(data).subscribe(() => this.router.navigate(['/']));
   }
 
   private createForm(model): void {
+    const lat = model.coordinates ? model.coordinates[1] : null;
+    const lng = model.coordinates ? model.coordinates[0] : null;
+
+    // model.title = 'Kellyville';
+    // model.description = 'US 33, 66 Kellyville Ramps';
+    // model.type = 'Point';
+    // lat = 35.99;
+    // lng = -96.19;
+
     this.form = this.formBuilder.group({
       title: [model.title],
       description: [model.description],
       type: [model.type],
-      coordinates: [model.coordinates],
+      latitude: [lat],
+      longitude: [lng],
     });
   }
 }
