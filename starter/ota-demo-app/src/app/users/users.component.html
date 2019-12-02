@@ -1,1 +1,31 @@
-<h1>User Page</h1>
+<section class="users-section">
+  <h1 class="users-section__title">Users Page</h1>
+
+  <div class="card-container">
+    <a class="circle-link" title="Add User" rel="noopener" (click)="add()">Add</a>
+  </div>
+
+  <div id="users" class="users-section__table">
+    <table>
+      <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <div class="card-container">
+              <a class="circle-link" title="Edit" rel="noopener" (click)="edit(user.id)">Edit</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+  </div>
+</section>

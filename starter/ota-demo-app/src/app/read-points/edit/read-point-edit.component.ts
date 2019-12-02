@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ReadPointProxyService } from '../../../services/read-point-proxy.service';
 import { ReadPoint } from '../readPoint';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseEditComponent } from '../../base-edit.component';
 
 @Component({
   selector: 'app-read-point-edit',
@@ -11,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./read-point-edit.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ReadPointEditComponent implements OnInit, OnDestroy {
+export class ReadPointEditComponent extends BaseEditComponent implements OnInit, OnDestroy {
   public form: FormGroup;
   public readPoint: ReadPoint = new ReadPoint();
   private subscriptions: Subscription[] = [];
@@ -22,17 +23,25 @@ export class ReadPointEditComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private formBuilder: FormBuilder,
-  ) {}
+  ) {
+    super();
+  }
 
   public ngOnInit() {
     this.subscriptions.push(
       this.route.paramMap.subscribe(params => {
         const id = +params.get('id');
-        console.log('ID: ', id);
 
-        const model = new ReadPoint();
+        this.setTitle(id);
 
-        this.createForm(model);
+        let model;
+
+        if (id) {
+          this.readPointProxySvc.get(id).subscribe(data => this.createForm(data));
+        } else {
+          model = new ReadPoint();
+          this.createForm(model);
+        }
       }),
     );
 
@@ -58,9 +67,11 @@ export class ReadPointEditComponent implements OnInit, OnDestroy {
 
     const data = { title, description, type, coordinates: [longitude, latitude] };
 
-    console.log(data);
-
-    this.readPointProxySvc.add(data).subscribe(() => this.router.navigate(['/']));
+    if (this.title === 'Edit') {
+      this.readPointProxySvc.update(data).subscribe(() => this.handleSuccess);
+    } else {
+      this.readPointProxySvc.add(data).subscribe(() => this.handleSuccess);
+    }
   }
 
   private createForm(model): void {
@@ -80,5 +91,9 @@ export class ReadPointEditComponent implements OnInit, OnDestroy {
       latitude: [lat],
       longitude: [lng],
     });
+  }
+
+  private handleSuccess(): void {
+    this.router.navigate(['/']);
   }
 }

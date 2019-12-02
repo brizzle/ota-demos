@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const factory = require('./handlerFactory');
-// const ReadPoint = require('../models/readPoint');
 
 const dataPath = path.join(__dirname, '../dev-data/readPoints.json');
 
@@ -10,6 +9,7 @@ function readData() {
 }
 
 exports.getAll = factory.getAll(readData());
+exports.get = factory.get(readData());
 
 exports.create = (req, res, next) => {
   const data = readData();

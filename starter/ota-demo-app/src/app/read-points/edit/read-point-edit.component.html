@@ -1,7 +1,7 @@
 <section class="ota-read-point-edit-section">
   <div class="edit-form">
     <form class="form form__edit" [formGroup]="form">
-      <h1 class="form__edit__form-header">Read Point</h1>
+      <h1 class="form__edit__form-header">{{ title }} Read Point</h1>
 
       <div class="form__group">
         <label class="form__label" for="name">Title</label>
@@ -54,7 +54,7 @@
 
       <div class="form__actions">
         <button type="button" class="ota-btn ota-btn--secondary form__actions__item" (click)="cancel()">
-          <i class="ft-x"></i> Cancel
+          Cancel
         </button>
         <button
           [disabled]="!form.valid || !isValid || !form.dirty"
@@ -62,7 +62,7 @@
           (click)="submit()"
           class="ota-btn ota-btn--primary form__actions__item"
         >
-          <i class="fa fa-check-square-o"></i> Save
+          Save
         </button>
       </div>
     </form>

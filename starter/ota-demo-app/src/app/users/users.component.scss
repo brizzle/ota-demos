@@ -1,0 +1,26 @@
+.users-section {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+
+    &--text {
+      padding: 0 2rem;
+    }
+  }
+
+  &__title {
+    margin-bottom: 2rem;
+  }
+
+  &__table {
+    margin-bottom: 2rem;
+
+    td {
+      padding: 0 2rem;
+    }
+  }
+}

@@ -1,8 +1,4 @@
-import {
-  HttpParams,
-  HttpHeaders,
-  HttpErrorResponse
-} from '@angular/common/http';
+import { HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 
 export class BaseProxyService {
@@ -11,18 +7,17 @@ export class BaseProxyService {
   protected getRequestOptions(accept: string, contentType: string): any {
     const requestOptions = {
       params: new HttpParams(),
-      headers: new HttpHeaders()
+      headers: new HttpHeaders(),
     };
 
-    requestOptions.headers = new HttpHeaders()
-      .set('Accept', accept)
-      .set('Content-Type', contentType);
+    requestOptions.headers = new HttpHeaders().set('Accept', accept).set('Content-Type', contentType);
 
     return requestOptions;
   }
 
   protected handleSuccess(response: any): Observable<any> {
-    console.log(response);
+    // console.log(response);
+    console.log(response.data.data);
     return response.data.data;
   }
 

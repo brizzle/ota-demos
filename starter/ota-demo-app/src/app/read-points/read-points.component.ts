@@ -13,19 +13,20 @@ import { Router } from '@angular/router';
 })
 export class ReadPointsComponent implements OnInit, OnDestroy {
   public readPoints: Array<any> = new Array<any>();
-  public headers = ['Id', 'Title', 'Description', 'Type', 'Coordinates'];
   private subscriptions: Subscription[] = [];
   map: mapboxgl.Map;
 
   constructor(private readPointProxySvc: ReadPointProxyService, public router: Router) {}
 
   public ngOnInit() {
-    this.readPointProxySvc.getAll().subscribe(
-      data => {
-        this.readPoints = data;
-        this.setupMapbox(data);
-      },
-      err => console.log(err),
+    this.subscriptions.push(
+      this.readPointProxySvc.getAll().subscribe(
+        data => {
+          this.readPoints = data;
+          this.setupMapbox(data);
+        },
+        err => console.log(err),
+      ),
     );
   }
 
@@ -37,6 +38,16 @@ export class ReadPointsComponent implements OnInit, OnDestroy {
 
   public add(): void {
     this.router.navigate(['/read-points/', 0, 'edit']);
+  }
+
+  public edit(id): void {
+    const readPointId = +id;
+
+    if (readPointId) {
+      this.router.navigate(['/read-points/', readPointId, 'edit']);
+    } else {
+      this.router.navigate(['/read-points/', 0, 'edit']);
+    }
   }
 
   private setupMapbox(readPoints): void {

@@ -26,7 +26,7 @@ export class ReadPointProxyService extends BaseProxyService {
 
     const requestOptions = this.getRequestOptions('application/json', 'application/json');
 
-    return this.http.post(url, requestOptions).pipe(
+    return this.http.get(url, requestOptions).pipe(
       map(res => this.handleSuccess(res)),
       catchError(err => this.handleError(err)),
     );
@@ -38,6 +38,17 @@ export class ReadPointProxyService extends BaseProxyService {
     const requestOptions = this.getRequestOptions('application/json', 'application/json');
 
     return this.http.post(url, data, requestOptions).pipe(
+      map(res => this.handleSuccess(res)),
+      catchError(err => this.handleError(err)),
+    );
+  }
+
+  public update(data: any): Observable<any> {
+    const url = `${this.baseUrl}api/v1/read-points`;
+
+    const requestOptions = this.getRequestOptions('application/json', 'application/json');
+
+    return this.http.patch(url, data, requestOptions).pipe(
       map(res => this.handleSuccess(res)),
       catchError(err => this.handleError(err)),
     );

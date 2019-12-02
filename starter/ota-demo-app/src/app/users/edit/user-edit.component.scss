@@ -1,0 +1,93 @@
+.ota-user-edit-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form {
+  margin: 0 auto;
+  max-width: 55rem;
+  min-width: 55rem;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06);
+  padding: 5rem 7rem;
+  border-radius: 0.5rem;
+}
+
+.form__input {
+  display: block;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+  padding: 1.25rem 1.75rem;
+  border: none;
+  width: 100%;
+  background-color: #fff;
+  background-color: #f2f2f2;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-bottom: 3px solid var(--color-primary);
+  }
+
+  &:focus:invalid {
+    border-bottom: 3px solid var(--color-secondary);
+  }
+
+  &::-webkit-input-placeholder {
+    color: #bbb;
+  }
+}
+
+.form__edit {
+  display: flex;
+  flex-direction: column;
+
+  &__form-header {
+    display: flex;
+    align-self: center;
+
+    padding: 2rem 0;
+    text-transform: uppercase;
+  }
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+
+  &:not(:last-child) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.form__label {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.row {
+  display: flex;
+
+  &__item {
+    padding: 0 2rem;
+  }
+}
+
+.form__actions {
+  display: flex;
+  justify-content: center;
+
+  &__item {
+    margin: 0 2rem;
+  }
+}

@@ -1,0 +1,31 @@
+<section class="ota-user-edit-section">
+  <div class="edit-form">
+    <form class="form form__edit" [formGroup]="form">
+      <h1 class="form__edit__form-header">{{ title }} User</h1>
+
+      <div class="form__group">
+        <label class="form__label" for="name">Name</label>
+        <input type="text" id="name" class="form__input" placeholder="Name" name="name" formControlName="name" />
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="role">Role</label>
+        <input type="text" id="role" class="form__input" placeholder="Role" name="role" formControlName="role" />
+      </div>
+
+      <div class="form__actions">
+        <button type="button" class="ota-btn ota-btn--secondary form__actions__item" (click)="cancel()">
+          Cancel
+        </button>
+        <button
+          [disabled]="!form.valid || !isValid || !form.dirty"
+          type="submit"
+          (click)="submit()"
+          class="ota-btn ota-btn--primary form__actions__item"
+        >
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
