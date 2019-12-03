@@ -1,1 +1,1 @@
-[{"id":1,"name":"Jane Smith","email":"test@pikepass.com","photo":"profile.jpeg","role":"admin","password":"","active":true},{"id":2,"name":"John Doe","email":"test-2@pikepass.com","photo":"profile-2.jpeg","role":"user","password":"","active":true},{"id":3,"name":"Brock Billings","role":"admin"}]
+[{"id":1,"name":"John Doe","email":"john.doe@nowhere.com","password":"$2a$12$1zKKnwK5/q1eEnWi3iPnjeAv28ZUv.1.KEly/9cxBLjYdmFuMmhpK","role":"admin"}]

@@ -1,11 +1,1 @@
-[
-  {
-    "id": 1,
-    "type": "barrier",
-    "location": {
-      "type": "point",
-      "description": "Test Description",
-      "coordinates": "-80.185942, 25.774772"
-    }
-  }
-]
+[{"id":1,"type":"Point","title":"test title","description":"West Endgate Mainline","coordinates":[-97.42,35.6]},{"id":2,"type":"Point","title":"test title","description":"SH 66 Wellston","coordinates":[-97.05,35.68]},{"id":3,"type":"Point","title":"test title","description":"SH 18 Chandler","coordinates":[-96.89,35.72]},{"id":4,"type":"Point","title":"test title","description":"SH 99 Stroud","coordinates":[-96.66,35.75]},{"id":5,"type":"Point","title":"Mainline","description":"Mainline","coordinates":[-96.62,35.77]},{"id":6,"type":"Point","title":"Bristow","description":"US 66 Bristow","coordinates":[-96.38,35.85]},{"id":7,"title":"Kellyville","description":"US 33, 66 Kellyville Ramps","type":"Point","coordinates":[-96.19,35.99]}]

@@ -1,15 +1,27 @@
 const path = require('path');
 const fs = require('fs');
 const factory = require('./handlerFactory');
+// const catchAsync = require('../utils/catchAsync');
+// const AppError = require('../utils/appError');
+const bcrypt = require('bcryptjs');
 
 const dataPath = path.join(__dirname, '../dev-data/users.json');
 
 function readData() {
-  return JSON.parse(fs.readFileSync(dataPath));
+  return JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+}
+
+async function readDataAsync() {
+  const res = await JSON.parse(fs.readFile(data, 'utf-8'));
+  return new Buffer(res);
 }
 
 exports.getAll = factory.getAll(readData());
 exports.get = factory.get(readData());
+
+exports.getuserByEmail = async (email) => {
+    return await readDataAsync().find(x => x.email.toLowerCase() === email.toLowerCase());
+};
 
 exports.create = (req, res, next) => {
   const data = readData();
@@ -22,6 +34,8 @@ exports.create = (req, res, next) => {
 
   // Write object to json file
   data.push(newUser);
+
+  newUser.password = undefined;
 
   // Need to use writeFile and not writeFileSync since this
   // is inside of a callback function that is running in the event loop.
@@ -100,4 +114,9 @@ function update(source, id, updatedObj) {
       return;
     }
   }
+}
+
+exports.correctPassword = async (candidatePassword, userPassword) => {
+  // This will compare the password with the hashed password.
+  return await bcrypt.compare(candidatePassword, userPassword);
 }
